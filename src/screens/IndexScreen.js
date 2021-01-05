@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {View, Text, StyleSheet, FlatList, Button, TouchableOpacity} from 'react-native';
 import { Context } from '../context/BlogContext';
 import { Entypo } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 const IndexScreen = ({ navigation }) => {
     const {state, addBlogPost, deleteBlogPost} = useContext(Context);
@@ -30,6 +31,18 @@ const IndexScreen = ({ navigation }) => {
         </View>
     )
 }
+
+//when index screen is about to be displayed. navigation will automatically 
+//call "navigationOptions". then inspect the object returned
+IndexScreen.navigationOptions = ({ navigation }) => {
+    return {
+        headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Create') }>
+                <Feather name="plus" size={30} />
+            </TouchableOpacity>
+        )        
+    };
+};
 
 const styles = StyleSheet.create({
     row: {
