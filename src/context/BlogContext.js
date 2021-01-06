@@ -2,6 +2,18 @@ import createDataContext from './createDataContext';
 
 const blogReducer = (state, action) => {
     switch(action.type) {
+        case 'edit_blogpost':
+            return state.map((blogPost) => {
+                //if the blogPost matches the edited(payload) return the edited version
+                // if (blogPost.id === action.payload.id) {
+                //     return action.payload;
+                // } else {
+                //     return blogPost;
+                // }
+                return blogPost.id === action.payload.id
+                ? action.payload
+                : blogPost;
+            });
         case 'delete_blogpost':
             //if true it gets added to the array if false it gets removed
             //filters out the blogPost.id that matches the payload
@@ -46,8 +58,14 @@ const deleteBlogPost = (dispatch) => {
     };
 };
 
+const editBlogPost = (dispatch) => {
+    return (title, content, id) => {
+        dispatch({ type: 'edit_blogpost', payload: {title, content, id} })
+    };
+};
+
 export const { Context, Provider } = createDataContext(
     blogReducer, 
-    { addBlogPost, deleteBlogPost }, 
+    { addBlogPost, deleteBlogPost, editBlogPost }, 
     [{title: 'Test Post', content: 'Test Content', id: 1}]
 );
