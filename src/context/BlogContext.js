@@ -59,8 +59,9 @@ const deleteBlogPost = (dispatch) => {
 };
 
 const editBlogPost = (dispatch) => {
-    return (title, content, id) => {
-        dispatch({ type: 'edit_blogpost', payload: {title, content, id} })
+    return (title, content, id, callback) => {
+        dispatch({ type: 'edit_blogpost', payload: {title, content, id} });
+        callback();
     };
 };
 
