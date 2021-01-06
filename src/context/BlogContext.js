@@ -20,9 +20,10 @@ const blogReducer = (state, action) => {
 };
 
 const addBlogPost = dispatch => {
-    return (title, content, callback) => {
+    // add callback as parameter for navigation with API
+    return (title, content) => {
         dispatch({ type: 'add_blogpost', payload: {title, content}});
-        callback();
+        // callback();
     };
 };
 
