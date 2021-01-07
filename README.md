@@ -7,3 +7,7 @@ Data Flow
 Blog Post Provider >>>>
 - React Navigator Stack >
 - IndexScreen - ShowScreen - CreateScreen - EditScreen
+
+Json server initialization
+- npm init
+- npm install json-server ngrok
