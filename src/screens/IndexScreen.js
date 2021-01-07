@@ -1,11 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import { Context } from '../context/BlogContext';
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
 const IndexScreen = ({ navigation }) => {
-    const {state, deleteBlogPost} = useContext(Context);
+    const {state, deleteBlogPost, getBlogPosts} = useContext(Context);
+    
+    //empty array at the end of the function means that it will only be ran one time
+    useEffect(() => {
+        getBlogPosts();
+
+        //didFocus tells react that anytime this component gains focus this action becomes invoked
+        const listener = navigation.addListener('didFocus', () => {
+            getBlogPosts();
+        })
+
+        //prevents memory leaks if this screen is removed
+        //once its off our device clean up
+        return () => {
+            listener.remove();
+        };
+    }, [])
 
     return (
         <View>
