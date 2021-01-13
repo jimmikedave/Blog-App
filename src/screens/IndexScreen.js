@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Context } from '../context/BlogContext';
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
